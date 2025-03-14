@@ -140,35 +140,35 @@ public class pokemonStorage extends javax.swing.JFrame {
     
     
     private void backpackAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backpackAddMouseClicked
-     int[] selectedIndices = computerlist.getSelectedIndices(); // Pega seleção da computerlist  
+     int[] selectedIndices = computerlist.getSelectedIndices(); 
     if (selectedIndices.length > 0) {
         for (int i = selectedIndices.length - 1; i >= 0; i--) {
             int index = selectedIndices[i];
 
-            // Só adiciona se a mochila tiver espaço
+            
             if (modelo2.getSize() < 6) {
-                modelo2.addElement(modelo1.getElementAt(index)); // Adiciona ao backpack
-                modelo1.remove(index); // Remove do computerlist
+                modelo2.addElement(modelo1.getElementAt(index)); 
+                modelo1.remove(index); 
             } else {
-                break; // Sai do loop se já tiver 6 elementos
+                break; 
             }
         }
     }
-    backpackList.setModel(modelo2); // Atualiza mochila
-    computerlist.setModel(modelo1); // Atualiza PC
+    backpackList.setModel(modelo2); 
+    computerlist.setModel(modelo1); 
     }//GEN-LAST:event_backpackAddMouseClicked
 
     private void computerAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_computerAddMouseClicked
-            int[] selectedIndices = backpackList.getSelectedIndices(); // Pega seleção da computerlist  
+            int[] selectedIndices = backpackList.getSelectedIndices();  
     if (selectedIndices.length > 0) {
         for (int i = selectedIndices.length - 1; i >= 0; i--) {
             int index = selectedIndices[i];
-            modelo1.addElement(modelo2.getElementAt(index)); // Adiciona ao backpack
-            modelo2.remove(index); // Remove do computerlist
+            modelo1.addElement(modelo2.getElementAt(index)); 
+            modelo2.remove(index);
         }
     }
-    backpackList.setModel(modelo2); // Atualiza mochila
-    computerlist.setModel(modelo1); // Atualiza PC
+    backpackList.setModel(modelo2); 
+    computerlist.setModel(modelo1); 
     }//GEN-LAST:event_computerAddMouseClicked
 
     

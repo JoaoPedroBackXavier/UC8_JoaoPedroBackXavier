@@ -4,6 +4,8 @@
  */
 package com.mycompany.guessisnggamevisual;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author JOAOPEDROBACKXAVIER
@@ -81,7 +83,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private void botaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMouseClicked
         int valor = Integer.parseInt(entrada.getText());
         if (guessValidator.validateGuess(valor, numberToGuess)){
-            texto.setText("acertou! o numero é: "+numberToGuess);
+        JOptionPane.showMessageDialog(null, "acertou! o numero é: "+numberToGuess, "aviso", JOptionPane.INFORMATION_MESSAGE);   //("acertou! o numero é: "+numberToGuess);
         }else if(valor > numberToGuess){
             texto.setText("errou, o numero é menor.");
         }else{

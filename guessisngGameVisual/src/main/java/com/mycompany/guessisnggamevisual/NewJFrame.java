@@ -12,13 +12,17 @@ import javax.swing.JOptionPane;
  */
 public class NewJFrame extends javax.swing.JFrame {
     
+
             private int numberToGuess= (int) (Math.random() * 100) + 1;
-            private GuessValidator guessValidator = new GuessValidator();    
+            private GuessValidator guessValidator = new GuessValidator();   
+            private JanelaNomePlayer janelaNomePlayer;
     /**
      * Creates new form NewJFrame
      */
     public NewJFrame() {
-        initComponents();}
+        initComponents();
+        textoPlayer.setText(janelaNomePlayer.getPlayer());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,8 +37,14 @@ public class NewJFrame extends javax.swing.JFrame {
         botao = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         entrada = new javax.swing.JTextArea();
+        textoPlayer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         texto.setText("Chute um numero");
 
@@ -49,6 +59,8 @@ public class NewJFrame extends javax.swing.JFrame {
         entrada.setRows(5);
         jScrollPane1.setViewportView(entrada);
 
+        textoPlayer.setText("nome do jogador");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,13 +74,17 @@ public class NewJFrame extends javax.swing.JFrame {
                             .addComponent(botao, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(355, 355, 355)
-                        .addComponent(texto)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoPlayer)
+                            .addComponent(texto))))
                 .addContainerGap(440, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(128, 128, 128)
+                .addComponent(textoPlayer)
+                .addGap(18, 18, 18)
                 .addComponent(texto)
                 .addGap(47, 47, 47)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -83,6 +99,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private void botaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMouseClicked
         int valor = Integer.parseInt(entrada.getText());
         if (guessValidator.validateGuess(valor, numberToGuess)){
+            this.dispose();
         JOptionPane.showMessageDialog(null, "acertou! o numero é: "+numberToGuess, "aviso", JOptionPane.INFORMATION_MESSAGE);   //("acertou! o numero é: "+numberToGuess);
         }else if(valor > numberToGuess){
             texto.setText("errou, o numero é menor.");
@@ -90,6 +107,10 @@ public class NewJFrame extends javax.swing.JFrame {
             texto.setText("errou, o numero é maior.");
         };
     }//GEN-LAST:event_botaoMouseClicked
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -131,5 +152,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea entrada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel texto;
+    private javax.swing.JLabel textoPlayer;
     // End of variables declaration//GEN-END:variables
 }
